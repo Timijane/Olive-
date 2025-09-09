@@ -38,9 +38,7 @@
       display:flex; justify-content:space-between; align-items:center;
       z-index:1000;
     }
-    header h2 {
-      color:white; font-size:1.5rem;
-    }
+    header h2 { color:white; font-size:1.5rem; }
     nav ul {display:flex; list-style:none;}
     nav ul li {margin-left:20px;}
     nav ul li a {
@@ -50,10 +48,8 @@
     nav ul li a:hover {color:gold;}
     .menu-toggle {display:none; cursor:pointer; color:white;}
 
-    /* Hero */
-    .hero {
-      height:100vh; position:relative; overflow:hidden;
-    }
+    /* Hero Section */
+    .hero { height:100vh; position:relative; overflow:hidden; }
     .hero img {
       position:absolute; top:0; left:0; width:100%; height:100%;
       object-fit:cover; opacity:0; animation:slide 70s infinite;
@@ -73,29 +69,39 @@
     .hero img:nth-child(13) {animation-delay:60s;}
     .hero img:nth-child(14) {animation-delay:65s;}
     @keyframes slide {
-      0%{opacity:0;}
-      5%{opacity:1;}
-      20%{opacity:1;}
-      25%{opacity:0;}
-      100%{opacity:0;}
+      0%{opacity:0;} 5%{opacity:1;} 20%{opacity:1;} 25%{opacity:0;} 100%{opacity:0;}
     }
+
     .hero-content {
       position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
       text-align:center; color:white; z-index:2;
     }
-    .hero-content h1 {
-      font-size:3rem; margin-bottom:10px;
-      background:linear-gradient(to right, black, gold);
-      display:inline-block; padding:10px 20px; border-radius:10px;
+    .hero-content h1.hotel-name {
+      font-size:6vw;
+      font-weight:900;
+      font-family:'Georgia','Times New Roman',serif;
+      color:white;
+      letter-spacing:2px;
+      text-transform:uppercase;
     }
-    .hero-content p {
-      font-size:1.2rem; margin-bottom:20px;
-      background:linear-gradient(to right, black, gold);
-      display:inline-block; padding:5px 15px; border-radius:10px;
+    .hero-content p.slogan {
+      font-size:2vw;
+      font-weight:600;
+      color:#f5e6a7;
+      opacity:0;
+      transform:translateY(20px);
+      animation: fadeUp 3s ease forwards;
+      animation-delay:0.5s;
+      margin-bottom:25px; /* space between slogan and button */
+    }
+    @keyframes fadeUp {
+      0%{opacity:0; transform:translateY(20px);}
+      100%{opacity:1; transform:translateY(0);}
     }
     .hero-content a {
       background:gold; color:black; padding:12px 25px; text-decoration:none;
       font-weight:bold; border-radius:5px;
+      transition:0.3s;
     }
     .hero-content a:hover {background:white; color:black;}
 
@@ -170,8 +176,8 @@
     <img src="hotel10.jpg"><img src="hotel11.jpg"><img src="hotel12.jpg">
     <img src="hotel13.jpg"><img src="hotel14.jpg">
     <div class="hero-content">
-      <h1>Olive Hotel & Suites</h1>
-      <p>A place you're becoming The Monarch</p>
+      <h1 class="hotel-name">Olive Hotel & Suites</h1>
+      <p class="slogan">A Place You're Becoming The Monarch</p>
       <a href="reserve.html">Reserve Now</a>
     </div>
   </div>
@@ -189,7 +195,13 @@
       <div class="card"><img src="room1.jpg"><h3>Luxurious Room & Suites</h3><p>Elegant comfort with modern design.</p><a href="room-luxury.html">Read More</a></div>
       <div class="card"><img src="deluxe1.jpg"><h3>Deluxe</h3><p>Perfect blend of luxury & simplicity.</p><a href="room-deluxe.html">Read More</a></div>
       <div class="card"><img src="executive1.jpg"><h3>Executive</h3><p>Spacious & designed for business travelers.</p><a href="room-executive.html">Read More</a></div>
+      <!-- Rooms continued -->
       <div class="card"><img src="presidential1.jpg"><h3>Presidential</h3><p>Ultimate luxury with private service.</p><a href="room-presidential.html">Read More</a></div>
+      <div class="card"><img src="honey1.jpg"><h3>Honeymoon Suite</h3><p>Romantic retreat for couples.</p><a href="room-honeymoon.html">Read More</a></div>
+      <div class="card"><img src="access1.jpg"><h3>Accessible Room</h3><p>Comfort for all guests.</p><a href="room-accessible.html">Read More</a></div>
+      <div class="card"><img src="studio1.jpg"><h3>Studio Suite</h3><p>Spacious and modern design.</p><a href="room-studio.html">Read More</a></div>
+      <div class="card"><img src="connect1.jpg"><h3>Connect Rooms</h3><p>Perfect for families or groups.</p><a href="room-connect.html">Read More</a></div>
+      <div class="card"><img src="nature1.jpg"><h3>Corner Suite</h3><p>Elegant views and privacy.</p><a href="room-corner.html">Read More</a></div>
     </div>
   </section>
 
@@ -223,6 +235,7 @@
       <img src="hotel1.jpg"><img src="hotel2.jpg"><img src="hotel3.jpg">
       <img src="room1.jpg"><img src="room2.jpg"><img src="room3.jpg">
       <img src="pool1.jpg"><img src="spa1.jpg"><img src="gym1.jpg">
+      <img src="executive1.jpg"><img src="deluxe1.jpg"><img src="presidential1.jpg">
     </div>
   </section>
 
@@ -243,7 +256,10 @@
     <p>Phone: 09056658964</p>
     <p>Address: Ipokia Street, Abiola, Abeokuta, Ogun State, Nigeria</p>
     <p>Facebook: <a href="#">Olive Hotel & Suites</a></p>
-    <iframe src="https://www.google.com/maps/embed/v1/place?q=Abeokuta+Ogun+State+Nigeria&key=AIzaSyBq-Kd_pLx5QpN7FVkMtrQn7Y6a0N-KQ5U"></iframe>
+    <iframe 
+      src="https://www.google.com/maps/embed/v1/place?q=Ipokia+Street+Abiola+Abeokuta+Ogun+State+Nigeria&key=YOUR_GOOGLE_MAPS_API_KEY"
+      width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
     <p>&copy; 2025 Olive Hotel & Suites. All rights reserved.</p>
   </footer>
 
@@ -253,7 +269,7 @@
       document.getElementById("loader").style.display="none";
     });
 
-    // Mobile menu
+    // Mobile menu toggle
     const toggle = document.querySelector(".menu-toggle");
     const menu = document.querySelector("nav ul");
     toggle.addEventListener("click", ()=> menu.classList.toggle("show"));
