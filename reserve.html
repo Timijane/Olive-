@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve - Olive Hotel & Suites</title>
+  <style>
+    /* Reset & Base */
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family:'Segoe UI',sans-serif; background:#f4f4f4; color:#333;}
+    
+    /* Hero */
+    .hero {
+      height:50vh; background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hotel1.jpg') no-repeat center center/cover;
+      display:flex; justify-content:center; align-items:center; color:white; text-align:center;
+    }
+    .hero h1 {font-size:3rem; background:linear-gradient(to right, black, gold); padding:10px 20px; border-radius:10px;}
+    
+    /* Form Container */
+    .booking-container {
+      max-width:800px; margin: -80px auto 50px; background:white; padding:40px; border-radius:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+    .booking-container h2 {text-align:center; margin-bottom:30px; color:white; background:linear-gradient(to right, black, gold); padding:10px 20px; border-radius:10px;}
+    
+    form {display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+    form input, form select {padding:12px; border-radius:5px; border:1px solid #ccc; font-size:1rem;}
+    form label {font-weight:bold;}
+    form .full {grid-column:1 / -1;}
+    
+    .total {font-size:1.2rem; font-weight:bold; margin-top:10px;}
+    .pay-btn {
+      background:gold; color:black; border:none; padding:15px; font-size:1rem;
+      border-radius:5px; cursor:pointer; margin-top:20px;
+      transition:0.3s;
+    }
+    .pay-btn:hover {background:black; color:gold;}
+    
+    @media(max-width:768px){ form {grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Reserve Your Stay</h1>
+  </div>
+
+  <!-- Booking Form -->
+  <div class="booking-container">
+    <h2>Book Your Room</h2>
+    <form id="bookingForm">
+      <div>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div>
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" required>
+      </div>
+      <div>
+        <label for="room">Room Type</label>
+        <select id="room" required>
+          <option value="">Select Room</option>
+          <option value="40000">Luxurious Room & Suites - ₦40,000/night</option>
+          <option value="50000">Deluxe - ₦50,000/night</option>
+          <option value="70000">Executive - ₦70,000/night</option>
+          <option value="120000">Presidential - ₦120,000/night</option>
+          <option value="90000">Honeymoon Suite - ₦90,000/night</option>
+          <option value="45000">Accessible Room - ₦45,000/night</option>
+          <option value="55000">Studio Suite - ₦55,000/night</option>
+          <option value="60000">Connect Rooms - ₦60,000/night</option>
+          <option value="65000">Corner Suite - ₦65,000/night</option>
+        </select>
+      </div>
+      <div>
+        <label for="guests">Number of Guests</label>
+        <input type="number" id="guests" min="1" value="1" required>
+      </div>
+      <div>
+        <label for="nights">Number of Nights</label>
+        <input type="number" id="nights" min="1" value="1" required>
+      </div>
+      <div>
+        <label for="checkin">Check-in Date</label>
+        <input type="date" id="checkin" required>
+      </div>
+      <div>
+        <label for="checkout">Check-out Date</label>
+        <input type="date" id="checkout" required>
+      </div>
+      <div class="full">
+        <p class="total">Total Price: ₦<span id="total">0</span></p>
+        <button type="button" class="pay-btn" id="payBtn">Pay Now</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Paystack Script -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    const roomPrices = {
+      "Luxurious Room & Suites":40000,
+      "Deluxe":50000,
+      "Executive":70000,
+      "Presidential":120000,
+      "Honeymoon Suite":90000,
+      "Accessible Room":45000,
+      "Studio Suite":55000,
+      "Connect Rooms":60000,
+      "Corner Suite":65000
+    };
+
+    const unavailableDates = {
+      "Luxurious Room & Suites":["2025-09-15","2025-09-16","2025-09-18"],
+      "Deluxe":["2025-09-10","2025-09-12"],
+      "Executive":["2025-09-20"],
+      "Presidential":["2025-09-25","2025-09-26"],
+      // add more as needed
+    };
+
+    const roomSelect = document.getElementById("room");
+    const nightsInput = document.getElementById("nights");
+    const totalDisplay = document.getElementById("total");
+
+    function updateTotal() {
+      const price = parseInt(roomSelect.value);
+      const nights = parseInt(nightsInput.value);
+      if(price && nights) {
+        totalDisplay.textContent = price * nights;
+      } else {
+        totalDisplay.textContent = 0;
+      }
+    }
+
+    roomSelect.addEventListener("change", updateTotal);
+    nightsInput.addEventListener("input", updateTotal);
+
+    // Paystack Checkout
+    const payBtn = document.getElementById("payBtn");
+    payBtn.addEventListener("click", function(){
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const roomType = roomSelect.options[roomSelect.selectedIndex].text.split(" - ")[0];
+      const nights = document.getElementById("nights").value;
+      const amount = parseInt(roomSelect.value) * parseInt(nights) * 100; // in kobo
+
+      if(!name || !email || !phone || !roomType || !nights) {
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      // Check for unavailable dates
+      const checkin = document.getElementById("checkin").value;
+      const checkout = document.getElementById("checkout").value;
+      if(unavailableDates[roomType]) {
+        for(let date of unavailableDates[roomType]) {
+          if(checkin<=date && checkout>=date){
+            alert("Selected dates are unavailable for this room.");
+            return;
+          }
+        }
+      }
+
+      let handler = PaystackPop.setup({
+        key: 'pk_test_11cfaa047a2ef7b89532fab14542e5cdfb28fc90',
+        email: email,
+        amount: amount,
+        currency: "NGN",
+        ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+        metadata: {
+          custom_fields: [
+            {display_name:"Full Name", value: name},
+            {display_name:"Phone Number", value: phone},
+            {display_name:"Room Type", value: roomType},
+            {display_name:"Nights", value: nights}
+          ]
+        },
+        callback: function(response){
+          alert("Payment successful! Reference: " + response.reference);
+          document.getElementById("bookingForm").reset();
+          totalDisplay.textContent = 0;
+        },
+        onClose: function(){
+          alert("Payment window closed.");
+        }
+      });
+      handler.openIframe();
+    });
+  </script>
+</body>
+</html>
