@@ -3,262 +3,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Olive Hotel - A place for monarch</title>
+  <title>Olive Hotel - A Place for Monarch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; color: #333; }
 
-    body, html {
-      font-family: 'Georgia', serif;
-      color: #333;
-      scroll-behavior: smooth;
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
     }
-
-    /* Video Background */
-    .video-bg {
-      position: fixed;
+    .hero video {
+      position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: cover;
       z-index: -1;
     }
-
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      z-index: 10;
-    }
-    nav h2 { color: gold; font-size: 1.5rem; }
-    nav ul { list-style: none; display: flex; gap: 20px; }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    nav ul li a:hover { color: gold; }
-
-    /* Hero */
-    .hero {
-      height: 100vh;
+    .hero-content {
+      position: relative;
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: 100%;
       text-align: center;
-      color: white;
-      z-index: 1;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      padding: 20px;
     }
-    .hero h1 { font-size: 4rem; color: gold; }
-    .hero p { font-size: 1.5rem; margin: 10px 0; }
-    .hero button {
-      padding: 15px 40px;
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero-content p {
       font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .btn {
       background: gold;
-      border: none;
+      color: #000;
+      padding: 12px 25px;
       border-radius: 30px;
-      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
       transition: 0.3s;
     }
-    .hero button:hover { background: white; }
+    .btn:hover { background: #d4af37; }
 
-    /* Sections */
-    section {
-      padding: 80px 10%;
-      background: white;
-    }
-    section:nth-child(even) {
+    /* About Section */
+    .about {
+      padding: 60px 20px;
+      text-align: center;
       background: #f9f9f9;
     }
-    section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: #333;
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
     }
 
-    .grid {
+    /* Features */
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 50px 20px;
+      background: #fff;
+      flex-wrap: wrap;
+    }
+    .feature {
+      flex: 1 1 200px;
+      margin: 15px;
+      text-align: center;
+    }
+    .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    /* Rooms */
+    .rooms {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    .rooms h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      font-family: 'Playfair Display', serif;
+    }
+    .room-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
-    .card {
-      background: white;
+    .room {
+      background: #fff;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .card:hover { transform: scale(1.03); }
-    .card img { width: 100%; height: 200px; object-fit: cover; }
-    .card h3 { padding: 15px; font-size: 1.2rem; color: #444; }
-    .card p { padding: 0 15px 20px; font-size: 0.9rem; color: #666; }
-
-    /* Booking Form */
-    form {
-      max-width: 600px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    form input, form select, form textarea {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    form button {
-      padding: 15px;
-      background: gold;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-    form button:hover { background: black; color: white; }
-
-    /* Contact */
-    .contact {
-      text-align: center;
-    }
-    iframe {
+    .room img {
       width: 100%;
-      height: 300px;
-      border: 0;
-      border-radius: 10px;
-      margin-top: 20px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .room h3 {
+      padding: 15px;
+      font-size: 1.3rem;
+    }
+
+    /* Booking CTA */
+    .cta {
+      padding: 60px 20px;
+      background: #222;
+      text-align: center;
+      color: #fff;
+    }
+    .cta h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
     }
 
     /* Footer */
     footer {
-      background: black;
-      color: white;
+      background: #111;
+      color: #aaa;
       text-align: center;
       padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .hero-content h1 { font-size: 2rem; }
+      .features { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <!-- Background -->
-  <video autoplay muted loop class="video-bg">
-    <source src="https://player.vimeo.com/external/414857662.sd.mp4?s=1dce4b4e703ebff65f76e1e8c63d93926ab9dd3a&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-
-  <!-- Nav -->
-  <nav>
-    <h2>Olive Hotel</h2>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#rooms">Rooms</a></li>
-      <li><a href="#amenities">Amenities</a></li>
-      <li><a href="#booking">Booking</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
   <!-- Hero -->
-  <div class="hero">
-    <h1>Olive Hotel</h1>
-    <p>A place for monarch</p>
-    <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
-  </div>
+  <section class="hero">
+    <video autoplay muted loop>
+      <source src="hotel.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>Olive Hotel</h1>
+      <p>A Place for Monarch</p>
+      <a href="#booking" class="btn">Book Now</a>
+    </div>
+  </section>
 
   <!-- About -->
-  <section id="about">
+  <section class="about">
     <h2>Welcome to Olive Hotel</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      Nestled in the heart of luxury, Olive Hotel is designed for true monarchs of taste and comfort. 
-      From elegant suites to world-class services, every moment here is crafted for royalty.
-    </p>
+    <p>Experience world-class luxury at Olive Hotel, where elegance meets comfort. From stunning interiors to unmatched hospitality, we make every stay feel royal.</p>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature">
+      <h3>🏨 Luxury Rooms</h3>
+      <p>Modern, spacious, and stylishly designed rooms for every guest.</p>
+    </div>
+    <div class="feature">
+      <h3>🍽 Fine Dining</h3>
+      <p>Exquisite local and international cuisine served with class.</p>
+    </div>
+    <div class="feature">
+      <h3>🎉 Event Halls</h3>
+      <p>Perfect venues for weddings, conferences, and celebrations.</p>
+    </div>
+    <div class="feature">
+      <h3>🛎 24/7 Service</h3>
+      <p>Round-the-clock hospitality to make your stay seamless.</p>
+    </div>
   </section>
 
   <!-- Rooms -->
-  <section id="rooms">
-    <h2>Our Rooms & Suites</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="https://picsum.photos/400/250?random=1" alt="Deluxe Room">
+  <section class="rooms">
+    <h2>Our Rooms</h2>
+    <div class="room-grid">
+      <div class="room">
+        <img src="room1.jpg" alt="Deluxe Room">
         <h3>Deluxe Room</h3>
-        <p>Cozy comfort with modern elegance.</p>
       </div>
-      <div class="card">
-        <img src="https://picsum.photos/400/250?random=2" alt="Executive Suite">
+      <div class="room">
+        <img src="room2.jpg" alt="Executive Suite">
         <h3>Executive Suite</h3>
-        <p>Spacious living for business and leisure.</p>
       </div>
-      <div class="card">
-        <img src="https://picsum.photos/400/250?random=3" alt="Royal Suite">
-        <h3>Royal Suite</h3>
-        <p>Luxury designed for kings and queens.</p>
+      <div class="room">
+        <img src="room3.jpg" alt="Presidential Suite">
+        <h3>Presidential Suite</h3>
       </div>
     </div>
   </section>
 
-  <!-- Amenities -->
-  <section id="amenities">
-    <h2>Amenities & Services</h2>
-    <div class="grid">
-      <div class="card"><h3>Restaurant & Bar</h3><p>Fine dining with local and international cuisines.</p></div>
-      <div class="card"><h3>Spa & Wellness</h3><p>Relaxation and rejuvenation at its peak.</p></div>
-      <div class="card"><h3>Conference Halls</h3><p>Perfect venues for meetings & events.</p></div>
-    </div>
-  </section>
-
-  <!-- Booking -->
-  <section id="booking">
-    <h2>Book Your Stay</h2>
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="date" required>
-      <input type="date" required>
-      <select required>
-        <option>Select Room Type</option>
-        <option>Deluxe Room</option>
-        <option>Executive Suite</option>
-        <option>Royal Suite</option>
-      </select>
-      <button type="submit">Proceed to Payment</button>
-    </form>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="grid">
-      <img src="https://picsum.photos/400/250?random=4" alt="Hotel Image">
-      <img src="https://picsum.photos/400/250?random=5" alt="Hotel Image">
-      <img src="https://picsum.photos/400/250?random=6" alt="Hotel Image">
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p>Email: reservations@olivehotel.com | Phone: +234 800 123 4567</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126763.84442093393!2d3.2983!3d6.5244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8f7c9f9c7!2sLagos!5e0!3m2!1sen!2sng!4v1619793449390!5m2!1sen!2sng"></iframe>
+  <!-- CTA -->
+  <section class="cta" id="booking">
+    <h2>Book Your Stay Today</h2>
+    <a href="#" class="btn">Book & Pay Online</a>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Olive Hotel. All Rights Reserved.</p>
+    <p>© 2025 Olive Hotel | A Place for Monarch</p>
+    <p>123 Royal Avenue, Lagos | +234 800 123 4567</p>
   </footer>
+
 </body>
 </html>
