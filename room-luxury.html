@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxurious Room & Suites - Olive Hotel & Suites</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family:'Segoe UI',sans-serif; background:#f4f4f4; color:#333;}
+    
+    /* Hero Section */
+    .hero {
+      height:40vh; background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('room1.jpg') no-repeat center center/cover;
+      display:flex; justify-content:center; align-items:center; color:white; text-align:center;
+    }
+    .hero h1 {font-size:2.5rem; background:linear-gradient(to right, black, gold); padding:10px 20px; border-radius:10px;}
+
+    /* Page Container */
+    .container {max-width:1000px; margin:40px auto; padding:0 20px;}
+
+    /* Description */
+    .description {margin:20px 0; line-height:1.6; font-size:1.1rem;}
+
+    /* Price */
+    .price {font-size:1.5rem; font-weight:bold; color:gold; margin:20px 0;}
+
+    /* Gallery */
+    .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; margin-bottom:30px;}
+    .gallery img {width:100%; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+
+    /* Reserve Button */
+    .reserve-btn {
+      display:block; width:200px; margin:0 auto 50px; text-align:center;
+      background:gold; color:black; padding:15px; text-decoration:none;
+      border-radius:5px; font-weight:bold; transition:0.3s;
+    }
+    .reserve-btn:hover {background:black; color:gold;}
+    
+    @media(max-width:768px){ .hero h1{font-size:2rem;} }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Luxurious Room & Suites</h1>
+  </div>
+
+  <!-- Content Container -->
+  <div class="container">
+    <p class="description">
+      Welcome to our Luxurious Room & Suites at Olive Hotel & Suites, a perfect blend of elegance and comfort. Each room is meticulously designed to provide an unforgettable stay, featuring plush bedding, modern décor, and stunning views. Ideal for both leisure and business travelers seeking a lavish experience.
+    </p>
+
+    <p class="price">Price per Night: ₦40,000</p>
+
+    <!-- Gallery -->
+    <div class="gallery">
+      <img src="room1.jpg" alt="Luxurious Room 1">
+      <img src="room2.jpg" alt="Luxurious Room 2">
+      <img src="room3.jpg" alt="Luxurious Room 3">
+      <img src="room4.jpg" alt="Luxurious Room 4">
+      <img src="room5.jpg" alt="Luxurious Room 5">
+      <img src="room6.jpg" alt="Luxurious Room 6">
+    </div>
+
+    <!-- Reserve Now Button -->
+    <a href="reserve.html" class="reserve-btn">Reserve Now</a>
+  </div>
+
+</body>
+</html>
