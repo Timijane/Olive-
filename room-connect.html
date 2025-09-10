@@ -3,34 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connect Rooms - Olive Hotel & Suites</title>
+  <title>Connect Room - Olive Hotel & Suites</title>
   <style>
     * {margin:0; padding:0; box-sizing:border-box;}
     body {font-family:'Segoe UI',sans-serif; background:#f4f4f4; color:#333;}
-    .hero {height:40vh; background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('connect1.jpg') no-repeat center center/cover; display:flex; justify-content:center; align-items:center; color:white; text-align:center;}
-    .hero h1 {font-size:2.5rem; background:linear-gradient(to right, black, gold); padding:10px 20px; border-radius:10px;}
+    .hero {
+      height:40vh;
+      background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('connect1.jpg') no-repeat center center/cover;
+      display:flex; justify-content:center; align-items:center; color:white; text-align:center;
+    }
+    .hero h1 {
+      font-size:2.5rem;
+      background:linear-gradient(to right, black, gold);
+      padding:10px 20px;
+      border-radius:10px;
+    }
     .container {max-width:1000px; margin:40px auto; padding:0 20px;}
     .description {margin:20px 0; line-height:1.6; font-size:1.1rem;}
-    .price {font-size:1.5rem; font-weight:bold; color:gold; margin:20px 0;}
     .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; margin-bottom:30px;}
     .gallery img {width:100%; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-    .reserve-btn {display:block; width:200px; margin:0 auto 50px; text-align:center; background:gold; color:black; padding:15px; text-decoration:none; border-radius:5px; font-weight:bold; transition:0.3s;}
+    .reserve-btn, .back-home-btn {
+      display:block; width:200px; margin:20px auto; text-align:center;
+      padding:15px; text-decoration:none; border-radius:5px; font-weight:bold; transition:0.3s;
+    }
+    .reserve-btn {background:gold; color:black;}
     .reserve-btn:hover {background:black; color:gold;}
+    .back-home-btn {background:black; color:gold;}
+    .back-home-btn:hover {background:gold; color:black;}
     @media(max-width:768px){ .hero h1{font-size:2rem;} }
   </style>
 </head>
 <body>
 
+  <!-- Hero Section -->
   <div class="hero">
-    <h1>Connect Rooms</h1>
+    <h1>Connect Room</h1>
   </div>
 
+  <!-- Content -->
   <div class="container">
     <p class="description">
-      Connect Rooms are ideal for families or groups traveling together. These rooms are conveniently linked, offering ample space and privacy while keeping everyone close.
+      Perfect for families and groups, our Connect Rooms provide the ideal combination of privacy and 
+      togetherness. These rooms feature adjoining doors, allowing guests to move easily between 
+      spaces while enjoying their own private retreat. Thoughtfully designed with comfort and 
+      convenience in mind, the Connect Room is perfect for those who want to stay close, yet enjoy 
+      a spacious setting.
     </p>
-
-    <p class="price">Price per Night: ₦60,000</p>
 
     <div class="gallery">
       <img src="connect1.jpg" alt="Connect Room 1">
@@ -39,6 +57,8 @@
       <img src="connect4.jpg" alt="Connect Room 4">
     </div>
 
+    <!-- Navigation Buttons -->
+    <a href="index.html" class="back-home-btn">Back to Homepage</a>
     <a href="reserve.html" class="reserve-btn">Reserve Now</a>
   </div>
 
