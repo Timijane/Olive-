@@ -22,31 +22,40 @@
     .description {margin:20px 0; line-height:1.6; font-size:1.1rem;}
     .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; margin-bottom:30px;}
     .gallery img {width:100%; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-    .reserve-btn {
-      display:block; width:200px; margin:0 auto 50px; text-align:center;
-      background:gold; color:black; padding:15px; text-decoration:none;
-      border-radius:5px; font-weight:bold; transition:0.3s;
+    .reserve-btn, .back-home-btn {
+      display:block; width:200px; margin:20px auto; text-align:center;
+      padding:15px; text-decoration:none; border-radius:5px; font-weight:bold; transition:0.3s;
     }
+    .reserve-btn {background:gold; color:black;}
     .reserve-btn:hover {background:black; color:gold;}
+    .back-home-btn {background:black; color:gold;}
+    .back-home-btn:hover {background:gold; color:black;}
     @media(max-width:768px){ .hero h1{font-size:2rem;} }
   </style>
 </head>
 <body>
 
+  <!-- Hero Section -->
   <div class="hero">
     <h1>Gourmet Dining</h1>
   </div>
 
+  <!-- Content -->
   <div class="container">
     <p class="description">
-      Experience world-class fine dining at Olive Hotel & Suites. Our Gourmet Dining offers a sophisticated menu with premium ingredients, expertly paired flavors, and elegant presentation. Perfect for special occasions or unforgettable evenings.
+      At Olive Hotel & Suites, Gourmet Dining is more than just a meal—it’s an experience. 
+      Our chefs skillfully blend international cuisines with locally inspired flavors, creating 
+      dishes that are as visually stunning as they are delicious. From elegant entrées to 
+      beautifully plated desserts, every detail is designed to delight your senses.
     </p>
 
     <div class="gallery">
-      <img src="gourmet1.jpg" alt="Gourmet Dining 1">
-      <img src="gourmet2.jpg" alt="Gourmet Dining 2">
+      <img src="gourmet1.jpg" alt="Gourmet Dining Table Setting">
+      <img src="gourmet2.jpg" alt="Fine Dining Dish">
     </div>
 
+    <!-- Navigation Buttons -->
+    <a href="index.html" class="back-home-btn">Back to Homepage</a>
     <a href="reserve.html" class="reserve-btn">Reserve Now</a>
   </div>
 
